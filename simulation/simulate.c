@@ -92,7 +92,10 @@ void print(Simulation *hypercube, int choice){
         fflush(stdout);
     }
     printf("Visited vertices\n");
+    fflush(stdout);
     int index = 0; 
+    printf("egg: %d\n",hypercube->trials[choice]->visited[index]);
+    fflush(stdout);
     while (index < 100 && hypercube->trials[choice]->visited[index] != '\0') {
         printf("Visited %d\n", hypercube->trials[choice]->visited[index]);
         fflush(stdout);

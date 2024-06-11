@@ -60,7 +60,6 @@ void pick_rand(Simulation *hypercube, Trial *trial1, int turn){
         index++;
     }
     if (visit == 0){
-        trial1->fd += 1;
         trial1->visited[index++] = choice;
         trial1->visited[index] = '\0'; 
     }
@@ -92,10 +91,10 @@ void print(Simulation *hypercube, int choice){
         fflush(stdout);
     }
     printf("Visited vertices\n");
-    fflush(stdout);
+    // fflush(stdout);
     int index = 0; 
     printf("egg: %d\n",hypercube->trials[choice]->visited[index]);
-    fflush(stdout);
+    // fflush(stdout);
     while (index < 100 && hypercube->trials[choice]->visited[index] != '\0') {
         printf("Visited %d\n", hypercube->trials[choice]->visited[index]);
         fflush(stdout);

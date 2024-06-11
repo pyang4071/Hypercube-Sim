@@ -57,6 +57,7 @@ int main(){
         while(getchar() != '\n');
         
         print(hypercube, choice);
+        sleep(1);
     }
     return 0;
 }

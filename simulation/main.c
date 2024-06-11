@@ -22,9 +22,7 @@ int main(){
     } while (choice < 1);
     
     hypercube->n = choice -'0'; //for now n = 5
-    printf("%d\n", hypercube->n);
-
-    
+    printf("%d\n", hypercube->n);    
     do
     {
         printf("force revisit?\n");
@@ -36,28 +34,37 @@ int main(){
     } else {
         hypercube->force_revisited = 0;
     }
+    hypercube->min_fd = 0;
     Trial *trial1;
     int i = 0;
-    while (i < MAX_TURN){
+    while (i < MAX_COUNT){
         trial1 = malloc(sizeof(Trial));
         hypercube->trials[i] = trial1;
         trial1->fd = 0;
-        for (int j; j<100; j++){
+        for (int j = 0; j<MAX_TURN; j++){
             trial1->visited[j] = '\0';
             trial1->move[j][0] = 0;
             trial1->move[j][1] = 0;
         }
+        trial1->visited[0] = 0;
         simulate(hypercube, trial1);
         printf("Trial %d: fd = %d\n", i, trial1->fd);
         i++;
     }
+    int num;
+    print_sum(hypercube);
     while(1){
         printf("which trial to check?\n");
-        choice = getchar();
+        scanf("%d", &num);
         while(getchar() != '\n');
-        
-        print(hypercube, choice);
-        sleep(1);
+        if(num == 4071){
+            break;
+        }
+        print(hypercube, num);
     }
+    for(int jj = 0; jj < MAX_COUNT; jj++){
+        free(hypercube->trials[jj]);
+    }
+    free(hypercube);
     return 0;
 }

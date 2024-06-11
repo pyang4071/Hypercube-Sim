@@ -3,3 +3,5 @@ void check(Simulation *hypercube, Trial *trial1, int turn);
 void pick_rand(Simulation *hypercube, Trial *trial1, int turn);
 int exponent(int a, int b);
 int hamming_distance(int a, int b);
+void print(Simulation *hypercube, int choice);
+void print_sum(Simulation *hypercube);

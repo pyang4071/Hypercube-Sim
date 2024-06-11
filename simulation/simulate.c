@@ -20,10 +20,14 @@ void simulate(Simulation *hypercube, Trial *trial1){
         }
         turn++;
     }
+    int index = 0;
+    while(trial1->visited[index++] != '\0'){
+        trial1->fd = trial1->fd + 1;
+    }
 }
 
 void check(Simulation *hypercube, Trial *trial1, int turn){
-    int valid[100];
+    int valid[MAX_TURN];
     int index = 0;
     valid[index] = '\0';
     int index2 = 0;
@@ -87,17 +91,31 @@ void print(Simulation *hypercube, int choice){
     printf("Trial: %d\n", choice);
     fflush(stdout);
     for(int i = 0; i < MAX_TURN; i++){
-        printf("Explorer: %d, Vertex: %d\n", hypercube->trials[choice]->move[i][0], hypercube->trials[choice]->move[i][1]);
+        printf("Turn: %d, Explorer: %d, Vertex: %d\n", i, hypercube->trials[choice]->move[i][0], hypercube->trials[choice]->move[i][1]);
         fflush(stdout);
     }
     printf("Visited vertices\n");
     // fflush(stdout);
     int index = 0; 
-    printf("egg: %d\n",hypercube->trials[choice]->visited[index]);
     // fflush(stdout);
-    while (index < 100 && hypercube->trials[choice]->visited[index] != '\0') {
+    while (index < MAX_TURN && hypercube->trials[choice]->visited[index] != '\0') {
         printf("Visited %d\n", hypercube->trials[choice]->visited[index]);
         fflush(stdout);
         index++;
     }
+}
+
+void print_sum(Simulation *hypercube){
+    int mini;
+    for (int i = 0; i < MAX_COUNT; i++){
+        mini = hypercube->trials[i]->fd;
+        if (hypercube->min_fd == 0){
+            hypercube->min_fd = mini;
+        } else {
+            if (hypercube->min_fd > mini){
+                hypercube->min_fd = mini;
+            }
+        }
+    }
+    printf("Minimum vertices: %d\n",hypercube->min_fd);
 }

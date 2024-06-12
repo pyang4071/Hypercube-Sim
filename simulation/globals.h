@@ -1,8 +1,8 @@
 #ifndef Globals_H
 #define Globals_H
 
-#define MAX_COUNT 400
-#define MAX_TURN 2000
+#define MAX_COUNT 10000
+#define MAX_TURN 3000
 //trial counts
 
 typedef struct Trial
@@ -19,6 +19,7 @@ typedef struct Simulation
     int force_revisited;    //yes or no force the director to revisit
     Trial *trials[MAX_COUNT];   //trials are just Trials
     int min_fd;
+    int occ;
 }Simulation;
 
 

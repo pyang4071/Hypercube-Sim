@@ -99,10 +99,11 @@ void print(Simulation *hypercube, int choice){
     int index = 0; 
     // fflush(stdout);
     while (index < MAX_TURN && hypercube->trials[choice]->visited[index] != '\0') {
-        printf("Visited %d\n", hypercube->trials[choice]->visited[index]);
+        printf("%d ", hypercube->trials[choice]->visited[index]);
         fflush(stdout);
         index++;
     }
+    printf("\n");
 }
 
 void print_sum(Simulation *hypercube){
@@ -111,11 +112,14 @@ void print_sum(Simulation *hypercube){
         mini = hypercube->trials[i]->fd;
         if (hypercube->min_fd == 0){
             hypercube->min_fd = mini;
+            hypercube->occ = i;
         } else {
             if (hypercube->min_fd > mini){
                 hypercube->min_fd = mini;
+                hypercube->occ = i;
             }
         }
     }
     printf("Minimum vertices: %d\n",hypercube->min_fd);
+    printf("Occurance: %d\n",hypercube->occ);
 }
